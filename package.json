@@ -18,7 +18,8 @@
     "db:migrate": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:status": "prisma migrate status",
-    "admin:create": "tsx scripts/create-admin.ts"
+    "admin:create": "tsx scripts/create-admin.ts",
+    "programme:seed": "tsx scripts/seed-programme.ts"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.145",

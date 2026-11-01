@@ -6,18 +6,12 @@ definePageMeta({ middleware: [] })
 const { public: { appName } } = useRuntimeConfig()
 useHead({ title: `Sign in · ${appName}` })
 
-const colorMode = useColorMode()
 const email = ref('')
 const password = ref('')
 const showPassword = ref(false)
 const errorMessage = ref('')
 const pending = ref(false)
 const currentUser = useState<AuthenticatedUser | null>('current-user', () => null)
-const isDark = computed(() => colorMode.value === 'dark')
-
-function toggleColorMode(): void {
-  colorMode.preference = isDark.value ? 'light' : 'dark'
-}
 
 async function login(): Promise<void> {
   errorMessage.value = ''
@@ -46,17 +40,7 @@ async function login(): Promise<void> {
 <template>
   <div class="auth-page">
     <header class="auth-header">
-      <AppLogo />
-      <ClientOnly>
-        <button type="button" class="auth-theme-toggle" :aria-label="isDark ? 'Use light mode' : 'Use dark mode'" @click="toggleColorMode">
-          <UIcon :name="isDark ? 'i-lucide-sun' : 'i-lucide-moon'" />
-        </button>
-        <template #fallback>
-          <button type="button" class="auth-theme-toggle" aria-label="Color mode" disabled>
-            <UIcon name="i-lucide-monitor" />
-          </button>
-        </template>
-      </ClientOnly>
+      <NuxtLink to="/" aria-label="Home"><AppLogo /></NuxtLink>
     </header>
 
     <main class="auth-main">

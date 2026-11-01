@@ -21,6 +21,15 @@ export const primaryNavigation: NavigationItem[] = [
 
 export const navigationGroups: NavigationGroup[] = [
   {
+    key: 'festival',
+    label: 'Festival',
+    icon: 'i-lucide-calendar-days',
+    items: [
+      { label: 'Programme', icon: 'i-lucide-calendar-clock', to: '/admin/programme', permission: 'programme.read' },
+      { label: 'Registrations', icon: 'i-lucide-clipboard-list', to: '/admin/registrations', permission: 'registrations.read' },
+    ],
+  },
+  {
     key: 'access',
     label: 'Users & permissions',
     icon: 'i-lucide-user-cog',
@@ -52,23 +61,21 @@ export interface PublicLinkGroup {
 }
 
 export const publicNavigation: PublicLink[] = [
-  { label: 'Features', to: '/#features' },
-  { label: 'How it works', to: '/#how-it-works' },
-  { label: 'Get started', to: '/#get-started' },
+  { label: 'Programme', to: '/programme' },
 ]
 
 export const publicFooterGroups: PublicLinkGroup[] = [
   {
-    label: 'Product',
+    label: 'Festival',
     links: [
-      { label: 'Features', to: '/#features' },
-      { label: 'How it works', to: '/#how-it-works' },
+      { label: 'Programme', to: '/programme' },
+      { label: 'Register', to: '/#register' },
     ],
   },
   {
-    label: 'Account',
+    label: 'Organisers',
     links: [
-      { label: 'Sign in', to: '/login' },
+      { label: 'Team sign-in', to: '/login' },
     ],
   },
 ]

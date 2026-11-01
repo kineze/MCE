@@ -12,6 +12,10 @@ const ADMIN_PERMISSIONS = [
   ['roles.manage', 'Manage roles and permissions'],
   ['settings.read', 'View system settings'],
   ['settings.manage', 'Change system settings'],
+  ['programme.read', 'View the festival programme, including drafts'],
+  ['programme.manage', 'Create, edit, publish and delete programme sessions'],
+  ['registrations.read', 'View and export festival registrations'],
+  ['registrations.manage', 'Delete festival registrations'],
 ] as const
 
 async function main(): Promise<void> {

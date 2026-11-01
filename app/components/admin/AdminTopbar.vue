@@ -12,7 +12,6 @@ const props = defineProps<{
   user: AuthenticatedUser | null
   accent: DashboardAccent
   accents: ReadonlyArray<{ value: DashboardAccent, label: string, color: string }>
-  dark: boolean
   dashboardZoom: DashboardZoom
   dashboardTextSize: DashboardTextSize
   logoutPending: boolean
@@ -23,7 +22,6 @@ const emit = defineEmits<{
   dashboardTextSizeChange: [value: DashboardTextSize]
   dashboardZoomChange: [value: DashboardZoom]
   logout: []
-  toggleColorMode: []
   toggleSidebar: []
 }>()
 
@@ -138,22 +136,6 @@ function resetDisplay(): void {
           </button>
         </div>
       </div>
-
-      <ClientOnly>
-        <button
-          type="button"
-          class="topbar-icon-button"
-          :aria-label="dark ? 'Use light mode' : 'Use dark mode'"
-          @click="emit('toggleColorMode')"
-        >
-          <UIcon :name="dark ? 'i-lucide-sun' : 'i-lucide-moon'" />
-        </button>
-        <template #fallback>
-          <button type="button" class="topbar-icon-button" aria-label="Color mode" disabled>
-            <UIcon name="i-lucide-monitor" />
-          </button>
-        </template>
-      </ClientOnly>
 
       <div class="topbar-popover">
         <button

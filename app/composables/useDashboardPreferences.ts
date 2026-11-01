@@ -1,5 +1,5 @@
 export const dashboardAccents = [
-  { value: 'nuxt', label: 'Nuxt green', color: '#00dc82' },
+  { value: 'mce', label: 'MCE teal', color: '#0398aa' },
   { value: 'blue', label: 'Ocean blue', color: '#2563eb' },
   { value: 'red', label: 'Signal red', color: '#e11d48' },
   { value: 'emerald', label: 'Emerald', color: '#059669' },
@@ -15,23 +15,12 @@ export type DashboardZoom = typeof dashboardZoomLevels[number]
 export type DashboardTextSize = typeof dashboardTextSizes[number]
 
 export function useDashboardPreferences() {
-  const colorMode = useColorMode()
-  const accent = useState<DashboardAccent>('dashboard-accent', () => 'nuxt')
+  const accent = useState<DashboardAccent>('dashboard-accent', () => 'mce')
   const dashboardZoom = useState<DashboardZoom>('dashboard-zoom', () => 100)
   const dashboardTextSize = useState<DashboardTextSize>('dashboard-text-size', () => 100)
   const sidebarMini = useState('sidebar-mini', () => false)
   const mobileSidebarOpen = useState('mobile-sidebar-open', () => false)
   const initialized = useState('dashboard-preferences-ready', () => false)
-
-  const isDark = computed(() => colorMode.value === 'dark')
-
-  function applyColorModeToDocument(dark: boolean): void {
-    if (!import.meta.client) return
-    const root = document.documentElement
-    root.classList.toggle('dark', dark)
-    root.classList.toggle('light', !dark)
-    root.style.colorScheme = dark ? 'dark' : 'light'
-  }
 
   function applyDashboardAttributes(): void {
     if (!import.meta.client) return
@@ -74,7 +63,6 @@ export function useDashboardPreferences() {
     sidebarMini.value = localStorage.getItem('app-sidebar-mini') === 'true'
     initialized.value = true
     applyDashboardAttributes()
-    applyColorModeToDocument(isDark.value)
   })
 
   watch(accent, value => {
@@ -105,23 +93,12 @@ export function useDashboardPreferences() {
     }
   })
 
-  watch(isDark, value => applyColorModeToDocument(value), { immediate: true, flush: 'sync' })
-
-  function toggleColorMode(): void {
-    const dark = !isDark.value
-    applyColorModeToDocument(dark)
-    colorMode.preference = dark ? 'dark' : 'light'
-  }
-
   return {
     accent,
-    colorMode,
     dashboardAccents,
     dashboardTextSize,
     dashboardZoom,
-    isDark,
     mobileSidebarOpen,
     sidebarMini,
-    toggleColorMode,
   }
 }

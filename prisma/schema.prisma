@@ -107,3 +107,78 @@ model Session {
   @@index([expiresAt])
   @@map("sessions")
 }
+
+model Venue {
+  id        String             @id @default(uuid())
+  slug      String             @unique @db.VarChar(80)
+  name      String             @db.VarChar(160)
+  address   String?            @db.VarChar(300)
+  mapUrl    String?            @db.VarChar(500)
+  sortOrder Int                @default(0)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  sessions  ProgrammeSession[]
+
+  @@map("venues")
+}
+
+enum SessionKind {
+  PERFORMANCE
+  PANEL
+  CONVERSATION
+  WORKSHOP
+  FILM
+  COMMUNITY
+  OTHER
+}
+
+/// A festival programme item. Not to be confused with `Session` (sign-in sessions).
+model ProgrammeSession {
+  id          String      @id @default(uuid())
+  title       String      @db.VarChar(200)
+  description String?     @db.VarChar(2000)
+  kind        SessionKind @default(OTHER)
+  venueId     String
+  startsAt    DateTime
+  endsAt      DateTime
+  people      String?     @db.VarChar(500)
+  moderator   String?     @db.VarChar(160)
+  /// Prime-time evening performances, shown prominently on the public site.
+  highlight   Boolean     @default(false)
+  published   Boolean     @default(false)
+  /// Internal planning notes. Never returned by public endpoints.
+  notes       String?     @db.VarChar(2000)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  venue       Venue       @relation(fields: [venueId], references: [id], onDelete: Restrict)
+
+  @@index([startsAt])
+  @@index([venueId])
+  @@index([published, startsAt])
+  @@map("programme_sessions")
+}
+
+/// A visitor's festival registration. IP addresses are deliberately not stored.
+model Registration {
+  id                 String    @id @default(uuid())
+  fullName           String    @db.VarChar(160)
+  email              String    @unique @db.VarChar(320)
+  phone              String?   @db.VarChar(40)
+  country            String?   @db.VarChar(80)
+  organisation       String?   @db.VarChar(160)
+  /// Colombo dates ("2026-12-02") the visitor plans to attend.
+  days               String[]
+  /// Session kinds the visitor is interested in.
+  interests          String[]
+  wantsUpdates       Boolean   @default(false)
+  consentedAt        DateTime
+  /// When the thank-you email was accepted by Brevo; null until it has been sent.
+  confirmationSentAt DateTime?
+  /// Why the last attempt to send the thank-you email failed, if it did.
+  confirmationError  String?   @db.VarChar(500)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([createdAt])
+  @@map("registrations")
+}

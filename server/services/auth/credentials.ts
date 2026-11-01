@@ -1,8 +1,9 @@
 import type { H3Event } from 'h3'
-import { createError, getRequestIP, readBody, setHeader } from 'h3'
+import { createError, readBody, setHeader } from 'h3'
 import { hashPassword, verifyPassword } from './password'
 import { loginRateLimiter } from './rate-limit'
 import { loginSchema, normalizeEmail } from './validation'
+import { clientIp } from '../../utils/client-ip'
 import { prisma } from '../../utils/prisma'
 
 function invalidCredentials(): never {
@@ -29,7 +30,7 @@ export async function verifyLoginCredentials(event: H3Event): Promise<{
   }
 
   const email = normalizeEmail(parsed.data.email)
-  const ipAddress = getRequestIP(event) ?? 'unknown'
+  const ipAddress = clientIp(event) ?? 'unknown'
   const rateLimitKey = `${ipAddress}:${email}`
   const rateLimit = loginRateLimiter.consume(rateLimitKey)
 

@@ -2,24 +2,35 @@
 import { publicFooterGroups, publicNavigation } from '../utils/navigation'
 
 const { public: { appName } } = useRuntimeConfig()
-const colorMode = useColorMode()
 const route = useRoute()
 const menuOpen = ref(false)
-const isDark = computed(() => colorMode.value === 'dark')
 const year = new Date().getFullYear()
-
-function toggleColorMode(): void {
-  colorMode.preference = isDark.value ? 'light' : 'dark'
-}
 
 watch(() => route.fullPath, () => {
   menuOpen.value = false
+})
+
+// The header is borderless at the top so the hero can fade into it; it gains a
+// border and shadow once the page scrolls.
+const scrolled = ref(false)
+
+function updateScrolled(): void {
+  scrolled.value = window.scrollY > 8
+}
+
+onMounted(() => {
+  updateScrolled()
+  window.addEventListener('scroll', updateScrolled, { passive: true })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', updateScrolled)
 })
 </script>
 
 <template>
   <div class="public-page">
-    <header class="public-header">
+    <header class="public-header" :class="{ 'public-header--scrolled': scrolled || menuOpen }">
       <nav class="public-nav" aria-label="Main">
         <NuxtLink to="/" class="public-nav__brand" :aria-label="`${appName} home`">
           <AppLogo />
@@ -32,17 +43,7 @@ watch(() => route.fullPath, () => {
         </ul>
 
         <div class="public-nav__actions">
-          <ClientOnly>
-            <button type="button" class="public-icon-button" :aria-label="isDark ? 'Use light mode' : 'Use dark mode'" @click="toggleColorMode">
-              <UIcon :name="isDark ? 'i-lucide-sun' : 'i-lucide-moon'" />
-            </button>
-            <template #fallback>
-              <button type="button" class="public-icon-button" aria-label="Color mode" disabled>
-                <UIcon name="i-lucide-monitor" />
-              </button>
-            </template>
-          </ClientOnly>
-          <NuxtLink to="/login" class="public-button public-button--primary public-nav__signin">Sign in</NuxtLink>
+          <NuxtLink to="/#register" class="public-button public-button--primary public-nav__signin">Register</NuxtLink>
           <button
             type="button"
             class="public-icon-button public-nav__toggle"
@@ -60,7 +61,7 @@ watch(() => route.fullPath, () => {
         <NuxtLink v-for="link in publicNavigation" :key="link.to" :to="link.to" @click="menuOpen = false">
           {{ link.label }}
         </NuxtLink>
-        <NuxtLink to="/login" class="public-button public-button--primary">Sign in</NuxtLink>
+        <NuxtLink to="/#register" class="public-button public-button--primary">Register</NuxtLink>
       </div>
     </header>
 
@@ -72,7 +73,7 @@ watch(() => route.fullPath, () => {
       <div class="public-footer__inner">
         <div class="public-footer__brand">
           <AppLogo />
-          <p>Accounts, roles and permissions for your team, in one place.</p>
+          <p>The Festival of Sacred Sounds, South Asia. 1–6 December 2026, Colombo.</p>
         </div>
         <nav v-for="group in publicFooterGroups" :key="group.label" class="public-footer__group" :aria-label="group.label">
           <h2>{{ group.label }}</h2>

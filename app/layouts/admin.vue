@@ -11,10 +11,8 @@ const {
   dashboardAccents,
   dashboardTextSize,
   dashboardZoom,
-  isDark,
   mobileSidebarOpen,
   sidebarMini,
-  toggleColorMode,
 } = useDashboardPreferences()
 
 const dashboardDesktop = computed(() => (
@@ -82,7 +80,6 @@ async function logout(): Promise<void> {
         :user="currentUser"
         :accent="accent"
         :accents="dashboardAccents"
-        :dark="isDark"
         :dashboard-zoom="dashboardZoom"
         :dashboard-text-size="dashboardTextSize"
         :logout-pending="logoutPending"
@@ -90,7 +87,6 @@ async function logout(): Promise<void> {
         @dashboard-text-size-change="setDashboardTextSize"
         @dashboard-zoom-change="setDashboardZoom"
         @logout="logout"
-        @toggle-color-mode="toggleColorMode"
         @toggle-sidebar="toggleSidebar"
       />
 
