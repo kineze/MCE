@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AuthenticatedUser } from '../../../shared/types/auth'
-import type { ManagedUser, UserListResponse, UserResponse, UserStatus } from '../../../shared/types/users'
+import type { AuthenticatedUser } from '#shared/types/auth'
+import type { ManagedUser, UserListResponse, UserResponse, UserStatus } from '#shared/types/users'
 
 definePageMeta({ layout: 'admin', middleware: 'auth', permission: 'users.read' })
 

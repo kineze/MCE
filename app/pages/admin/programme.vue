@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AdminProgrammeResponse, AdminSession, AdminSessionResponse } from '../../../shared/types/programme'
+import type { AdminProgrammeResponse, AdminSession, AdminSessionResponse } from '#shared/types/programme'
 import {
   FESTIVAL_DAYS,
   SESSION_KINDS,
@@ -8,8 +8,8 @@ import {
   colomboTimeValue,
   formatColomboTime,
   formatFestivalDay,
-} from '../../../shared/utils/festival'
-import type { SessionKind } from '../../../shared/utils/festival'
+} from '#shared/utils/festival'
+import type { SessionKind } from '#shared/utils/festival'
 
 definePageMeta({ layout: 'admin', middleware: 'auth', permission: 'programme.read' })
 

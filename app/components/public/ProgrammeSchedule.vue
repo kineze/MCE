@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PublicProgrammeResponse, PublicSession } from '../../../shared/types/programme'
-import { FESTIVAL_DAYS, SESSION_KIND_LABELS, colomboDateKey, formatColomboTime, formatFestivalDay } from '../../../shared/utils/festival'
+import type { PublicProgrammeResponse, PublicSession } from '#shared/types/programme'
+import { FESTIVAL_DAYS, SESSION_KIND_LABELS, colomboDateKey, formatColomboTime, formatFestivalDay } from '#shared/utils/festival'
 
 const props = withDefaults(defineProps<{
   /** Colombo date to show; the first day with sessions is used when empty. */

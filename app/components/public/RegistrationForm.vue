@@ -5,7 +5,7 @@ import {
   REGISTRATION_INTERESTS,
   REGISTRATION_INTEREST_LABELS,
   formatFestivalDay,
-} from '../../../shared/utils/festival'
+} from '#shared/utils/festival'
 
 const root = ref<HTMLElement | null>(null)
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { festivalCountdown, formatFestivalDay } from '../../../shared/utils/festival'
+import { festivalCountdown, formatFestivalDay } from '#shared/utils/festival'
 
 // The server's clock is shared with the client so the first render matches, then it ticks.
 const now = useState('festival-countdown-now', () => Date.now())

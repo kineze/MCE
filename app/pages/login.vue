@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AuthResponse, AuthenticatedUser } from '../../shared/types/auth'
+import type { AuthResponse, AuthenticatedUser } from '#shared/types/auth'
 
 definePageMeta({ middleware: [] })
 

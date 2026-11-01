@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AuthenticatedUser } from '../../../shared/types/auth'
+import type { AuthenticatedUser } from '#shared/types/auth'
 import { navigationGroups as configuredGroups, primaryNavigation as configuredPrimary, type NavigationGroup, type NavigationItem } from '../../utils/navigation'
 
 const props = defineProps<{

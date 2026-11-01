@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AdminDashboardSummary, AuthenticatedUser } from '../../../shared/types/auth'
+import type { AdminDashboardSummary, AuthenticatedUser } from '#shared/types/auth'
 
 definePageMeta({ layout: 'admin', middleware: 'auth' })
 

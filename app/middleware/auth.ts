@@ -1,4 +1,4 @@
-import type { AdminDashboardSummary, AuthenticatedUser } from '../../shared/types/auth'
+import type { AdminDashboardSummary, AuthenticatedUser } from '#shared/types/auth'
 
 export default defineNuxtRouteMiddleware(async (to) => {
   const currentUser = useState<AuthenticatedUser | null>('current-user', () => null)

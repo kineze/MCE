@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AuthenticatedUser } from '../../shared/types/auth'
+import type { AuthenticatedUser } from '#shared/types/auth'
 import type { DashboardAccent, DashboardTextSize, DashboardZoom } from '../composables/useDashboardPreferences'
 
 const currentUser = useState<AuthenticatedUser | null>('current-user', () => null)

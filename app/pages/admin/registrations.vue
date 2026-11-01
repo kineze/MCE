@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { RegistrationListResponse, RegistrationRecord } from '../../../shared/types/registrations'
-import { FESTIVAL_DAYS, REGISTRATION_INTEREST_LABELS, formatFestivalDay } from '../../../shared/utils/festival'
-import type { RegistrationInterest } from '../../../shared/utils/festival'
+import type { RegistrationListResponse, RegistrationRecord } from '#shared/types/registrations'
+import { FESTIVAL_DAYS, REGISTRATION_INTEREST_LABELS, formatFestivalDay } from '#shared/utils/festival'
+import type { RegistrationInterest } from '#shared/utils/festival'
 
 definePageMeta({ layout: 'admin', middleware: 'auth', permission: 'registrations.read' })
 

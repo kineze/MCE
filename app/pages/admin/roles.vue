@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ManagedRole, PermissionOption, RoleListResponse, RoleResponse } from '../../../shared/types/roles'
+import type { ManagedRole, PermissionOption, RoleListResponse, RoleResponse } from '#shared/types/roles'
 
 definePageMeta({ layout: 'admin', middleware: 'auth', permission: 'roles.read' })
 
