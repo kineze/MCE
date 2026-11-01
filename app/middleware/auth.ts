@@ -1,6 +1,6 @@
 import type { AdminDashboardSummary, AuthenticatedUser } from '../../shared/types/auth'
 
-export default defineNuxtRouteMiddleware(async () => {
+export default defineNuxtRouteMiddleware(async (to) => {
   const currentUser = useState<AuthenticatedUser | null>('current-user', () => null)
   const adminSummary = useState<AdminDashboardSummary | null>('admin-summary', () => null)
 
@@ -24,5 +24,10 @@ export default defineNuxtRouteMiddleware(async () => {
     currentUser.value = null
     adminSummary.value = null
     return navigateTo('/login')
+  }
+
+  const permission = to.meta.permission
+  if (permission && !currentUser.value?.permissions.includes(permission)) {
+    throw createError({ statusCode: 403, statusMessage: 'Insufficient permissions' })
   }
 })

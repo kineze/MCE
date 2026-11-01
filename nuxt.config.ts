@@ -4,10 +4,6 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  routeRules: {
-    '/': { redirect: '/login' },
-  },
-
   runtimeConfig: {
     public: {
       appName: 'MCE',

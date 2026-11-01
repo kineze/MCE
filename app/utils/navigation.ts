@@ -38,3 +38,37 @@ export const navigationGroups: NavigationGroup[] = [
     ],
   },
 ]
+
+// Public site navigation, used by the `public` layout header and footer.
+
+export interface PublicLink {
+  label: string
+  to: string
+}
+
+export interface PublicLinkGroup {
+  label: string
+  links: PublicLink[]
+}
+
+export const publicNavigation: PublicLink[] = [
+  { label: 'Features', to: '/#features' },
+  { label: 'How it works', to: '/#how-it-works' },
+  { label: 'Get started', to: '/#get-started' },
+]
+
+export const publicFooterGroups: PublicLinkGroup[] = [
+  {
+    label: 'Product',
+    links: [
+      { label: 'Features', to: '/#features' },
+      { label: 'How it works', to: '/#how-it-works' },
+    ],
+  },
+  {
+    label: 'Account',
+    links: [
+      { label: 'Sign in', to: '/login' },
+    ],
+  },
+]

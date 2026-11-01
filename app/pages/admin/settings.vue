@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ layout: 'admin', middleware: 'auth' })
+definePageMeta({ layout: 'admin', middleware: 'auth', permission: 'settings.read' })
 
 const { public: { appName } } = useRuntimeConfig()
 useHead({ title: `Settings · ${appName}` })

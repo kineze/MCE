@@ -36,7 +36,7 @@ Remove `ADMIN_PASSWORD` from `.env` afterwards. The script refuses to run if a s
 npm run dev
 ```
 
-Open http://localhost:3000. It redirects to `/login`, and you land on `/admin` after you sign in.
+Open http://localhost:3000 for the public home page. Sign in at `/login` to reach `/admin`.
 
 npm 11 blocks dependency install scripts unless they are approved. `package.json` → `allowScripts` approves esbuild, prisma, @prisma/engines and vue-demi at exact versions. If an upgrade changes those versions, run `npm install-scripts ls` and approve them again.
 
@@ -44,6 +44,8 @@ npm 11 blocks dependency install scripts unless they are approved. `package.json
 
 | Path | Purpose |
 | --- | --- |
+| `app/layouts/public.vue` | Public site shell (sticky nav with mobile menu + footer). Links live in `app/utils/navigation.ts` |
+| `app/pages/index.vue` | Public home page |
 | `app/layouts/admin.vue` | Dashboard shell (sidebar + topbar + content slot) |
 | `app/utils/navigation.ts` | Sidebar entries. Add pages here and gate each one with an optional `permission` |
 | `app/components/admin/` | `AdminSidebar`, `AdminTopbar`, `PagePlaceholder` |
@@ -52,6 +54,10 @@ npm 11 blocks dependency install scripts unless they are approved. `package.json
 | `app/assets/css/main.css` | Shell, auth and dashboard styles (`--app-*` tokens) |
 | `server/api/v1/auth/` | `login`, `logout`, `me` |
 | `server/api/v1/admin/summary.get.ts` | Dashboard metrics (requires `system.admin`) |
+| `server/api/v1/admin/users/` | List, create and update users (`users.read` / `users.manage`) |
+| `server/api/v1/admin/roles/` | List, create, update and delete roles (`roles.read` / `roles.manage`) |
+| `server/services/roles/rules.ts` | Locks system roles and roles you hold, and stops granting permissions you do not hold |
+| `server/services/users/rules.ts` | Stops administrators editing themselves, managing users with more permissions, or granting roles beyond their own |
 | `server/api/v1/health.get.ts` | Liveness check with a database ping |
 | `server/utils/authorization.ts` | `requirePermission(event, key)` / `requireRole(event, key)` |
 | `prisma/schema.prisma` | `SystemSetting`, `User`, `Role`, `Permission`, `UserRole`, `RolePermission`, `Session` |
@@ -59,7 +65,7 @@ npm 11 blocks dependency install scripts unless they are approved. `package.json
 
 ## Adding a dashboard page
 
-1. Create `app/pages/admin/<name>.vue` with `definePageMeta({ layout: 'admin', middleware: 'auth' })`.
+1. Create `app/pages/admin/<name>.vue` with `definePageMeta({ layout: 'admin', middleware: 'auth', permission: '<permission.key>' })`. The middleware returns 403 when the user lacks `permission`.
 2. Add an entry to `app/utils/navigation.ts`.
 3. Protect its API routes with `await requirePermission(event, '<permission.key>')`. Hiding an entry in the sidebar does not restrict access on its own.
 
