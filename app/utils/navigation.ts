@@ -53,6 +53,10 @@ export const navigationGroups: NavigationGroup[] = [
 export interface PublicLink {
   label: string
   to: string
+  /** Open in a new tab, for files such as the PDF booklet. */
+  newTab?: boolean
+  /** Fuller name for screen readers when the visible label is short. */
+  ariaLabel?: string
 }
 
 export interface PublicLinkGroup {
@@ -60,8 +64,16 @@ export interface PublicLinkGroup {
   links: PublicLink[]
 }
 
+export const ourStoryBooklet: PublicLink = {
+  label: 'Our Story',
+  to: '/booklets/mce-our-story-2024.pdf',
+  newTab: true,
+  ariaLabel: 'Our Story: Muslim Choral Ensemble booklet (2024, PDF, opens in a new tab)',
+}
+
 export const publicNavigation: PublicLink[] = [
   { label: 'Programme', to: '/programme' },
+  ourStoryBooklet,
 ]
 
 export const publicFooterGroups: PublicLinkGroup[] = [
@@ -70,6 +82,7 @@ export const publicFooterGroups: PublicLinkGroup[] = [
     links: [
       { label: 'Programme', to: '/programme' },
       { label: 'Register', to: '/#register' },
+      ourStoryBooklet,
     ],
   },
   {

@@ -38,7 +38,7 @@ onBeforeUnmount(() => {
 
         <ul class="public-nav__links">
           <li v-for="link in publicNavigation" :key="link.to">
-            <NuxtLink :to="link.to">{{ link.label }}</NuxtLink>
+            <NuxtLink :to="link.to" :external="link.newTab" :target="link.newTab ? '_blank' : undefined" :rel="link.newTab ? 'noopener' : undefined" :aria-label="link.ariaLabel">{{ link.label }}<UIcon v-if="link.newTab" name="i-lucide-arrow-up-right" class="public-link-external" /></NuxtLink>
           </li>
         </ul>
 
@@ -58,8 +58,8 @@ onBeforeUnmount(() => {
       </nav>
 
       <div v-show="menuOpen" id="public-mobile-menu" class="public-mobile-menu">
-        <NuxtLink v-for="link in publicNavigation" :key="link.to" :to="link.to" @click="menuOpen = false">
-          {{ link.label }}
+        <NuxtLink v-for="link in publicNavigation" :key="link.to" :to="link.to" :external="link.newTab" :target="link.newTab ? '_blank' : undefined" :rel="link.newTab ? 'noopener' : undefined" :aria-label="link.ariaLabel" @click="menuOpen = false">
+          {{ link.label }}<UIcon v-if="link.newTab" name="i-lucide-arrow-up-right" class="public-link-external" />
         </NuxtLink>
         <NuxtLink to="/#register" class="public-button public-button--primary">Register</NuxtLink>
       </div>
@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
           <h2>{{ group.label }}</h2>
           <ul>
             <li v-for="link in group.links" :key="link.to">
-              <NuxtLink :to="link.to">{{ link.label }}</NuxtLink>
+              <NuxtLink :to="link.to" :external="link.newTab" :target="link.newTab ? '_blank' : undefined" :rel="link.newTab ? 'noopener' : undefined" :aria-label="link.ariaLabel">{{ link.label }}<UIcon v-if="link.newTab" name="i-lucide-arrow-up-right" class="public-link-external" /></NuxtLink>
             </li>
           </ul>
         </nav>

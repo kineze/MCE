@@ -255,6 +255,7 @@ html { scroll-behavior: smooth; }
 .public-nav__links { display: none; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
 .public-nav__links a, .public-mobile-menu > a:not(.public-button) { color: #475569; font-size: .9rem; font-weight: 600; transition: color .15s; }
 .public-nav__links a:hover, .public-mobile-menu > a:not(.public-button):hover { color: var(--app-accent); }
+.public-link-external { width: .85em; height: .85em; margin-left: .2em; vertical-align: -.05em; opacity: .65; }
 .public-nav__actions { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
 .public-nav__actions .public-nav__signin { display: none; }
 .public-icon-button { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 999px; color: inherit; opacity: .75; transition: background .15s, opacity .15s; }
