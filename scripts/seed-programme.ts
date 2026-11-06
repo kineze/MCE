@@ -14,6 +14,7 @@ const VENUES = [
   { slug: 'alliance-francaise', name: 'Alliance Française de Colombo', sortOrder: 3 },
   { slug: 'jesuit-church', name: 'Jesuit Church', sortOrder: 4 },
   { slug: 'akbar-auditorium', name: 'Akbar Auditorium', sortOrder: 5 },
+  { slug: 'arcade-independence-square', name: 'Arcade Independence Square', sortOrder: 6 },
 ] as const
 
 type VenueSlug = typeof VENUES[number]['slug']
