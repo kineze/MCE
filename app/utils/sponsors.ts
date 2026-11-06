@@ -19,6 +19,7 @@ export const partnerRowOne: Sponsor[] = [
   { name: 'Shangri-La Hotels and Resorts', tier: 'Official Hospitality Partner', logo: '/sponsors/shangri-la.png' },
   { name: 'Jetwing Travels', tier: 'Official Transport Partner', logo: '/sponsors/jetwing-travels.png' },
   { name: 'Kent', tier: 'Corporate Partner', logo: '/sponsors/kent.png' },
+  { name: 'Tellurian (H J Pitter Pvt Ltd and Green Leaf Herbals Int)', tier: 'Corporate Partner', logo: '/sponsors/tellurian.png' },
   { name: 'Daily FT', tier: 'Print Media Partner', logo: '/sponsors/daily-ft.png' },
   { name: 'The Sunday Times', tier: 'Print Media Partner', logo: '/sponsors/sunday-times.png' },
   { name: 'Daily Mirror', tier: 'Print Media Partner', logo: '/sponsors/daily-mirror.png' },
