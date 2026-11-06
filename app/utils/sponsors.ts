@@ -36,5 +36,5 @@ export const partnerRowTwo: Sponsor[] = [
   { name: 'AB', tier: 'Institutional Partner', logo: '/sponsors/ab.png' },
   { name: 'NCC', tier: 'Institutional Partner', logo: '/sponsors/ncc.png' },
   { name: 'Embassy of the Republic of Türkiye', tier: 'Diplomatic Partner', logo: '/sponsors/embassy-turkiye.png' },
-  { name: 'Embassy of the Islamic Republic of Iran, Colombo', tier: 'Diplomatic Partner', logo: '/sponsors/embassy-iran.png' },
+  { name: 'Iran Cultural Center, Embassy of the Islamic Republic of Iran in Sri Lanka', tier: 'Diplomatic Partner', logo: '/sponsors/iran-cultural-center.png' },
 ]
