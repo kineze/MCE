@@ -82,7 +82,18 @@ onBeforeUnmount(() => {
     <footer class="public-footer">
       <div class="public-footer__inner">
         <div class="public-footer__brand">
-          <AppLogo />
+          <div class="public-footer__logos">
+            <AppLogo />
+            <span class="public-nav__divider" aria-hidden="true" />
+            <img
+              class="public-footer__partner"
+              src="/brand/voices-for-peace.png"
+              alt="Voices for Peace, founded in 2019"
+              width="158"
+              height="200"
+              loading="lazy"
+            >
+          </div>
           <p>The Festival of Sacred Sounds, South Asia. 1–6 December 2026, Colombo.</p>
         </div>
         <nav v-for="group in publicFooterGroups" :key="group.label" class="public-footer__group" :aria-label="group.label">
