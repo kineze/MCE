@@ -32,9 +32,19 @@ onBeforeUnmount(() => {
   <div class="public-page">
     <header class="public-header" :class="{ 'public-header--scrolled': scrolled || menuOpen }">
       <nav class="public-nav" aria-label="Main">
-        <NuxtLink to="/" class="public-nav__brand" :aria-label="`${appName} home`">
-          <AppLogo />
-        </NuxtLink>
+        <div class="public-nav__brands">
+          <NuxtLink to="/" class="public-nav__brand" :aria-label="`${appName} home`">
+            <AppLogo />
+          </NuxtLink>
+          <span class="public-nav__divider" aria-hidden="true" />
+          <img
+            class="public-nav__partner"
+            src="/brand/voices-for-peace.png"
+            alt="Voices for Peace, founded in 2019"
+            width="158"
+            height="200"
+          >
+        </div>
 
         <ul class="public-nav__links">
           <li v-for="link in publicNavigation" :key="link.to">

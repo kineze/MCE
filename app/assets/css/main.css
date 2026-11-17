@@ -251,7 +251,10 @@ html { scroll-behavior: smooth; }
 .public-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid transparent; background: #fff; transition: border-color .2s, background .2s, box-shadow .2s; }
 .public-header--scrolled { border-color: rgba(10,10,10,.08); background: rgba(255,255,255,.88); box-shadow: 0 6px 24px -18px rgba(10,10,10,.35); backdrop-filter: blur(12px); }
 .public-nav { display: flex; max-width: 72rem; height: 4rem; align-items: center; gap: 2rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
+.public-nav__brands { display: flex; flex: none; align-items: center; gap: .75rem; }
 .public-nav__brand { flex: none; color: inherit; --app-logo-height: 2.75rem; }
+.public-nav__divider { width: 1px; height: 2rem; background: rgba(10,10,10,.14); }
+.public-nav__partner { width: auto; height: 2.85rem; }
 .public-nav__links { display: none; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
 .public-nav__links a, .public-mobile-menu > a:not(.public-button) { color: #475569; font-size: .9rem; font-weight: 600; transition: color .15s; }
 .public-nav__links a:hover, .public-mobile-menu > a:not(.public-button):hover { color: var(--app-accent); }
@@ -513,6 +516,9 @@ html { scroll-behavior: smooth; }
 @media (min-width: 768px) {
   .public-nav { height: 5rem; }
   .public-nav__brand { --app-logo-height: 3.5rem; }
+  .public-nav__brands { gap: 1.1rem; }
+  .public-nav__divider { height: 2.75rem; }
+  .public-nav__partner { height: 4rem; }
   .public-nav__links, .public-nav__actions .public-nav__signin { display: flex; }
   .public-nav__toggle, .public-mobile-menu { display: none !important; }
   .public-hero__image { object-position: center; }
